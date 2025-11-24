@@ -3,10 +3,10 @@ import { Route, Routes } from 'react-router-dom';
 
 import { MainLayout } from '../layouts/MainLayout';
 
-const DashboardPage = lazy(() => import('../features/DashboardPage'));
-const AppointmentsPage = lazy(() => import('../features/AppointmentsPage'));
-const LabResultsPage = lazy(() => import('../features/LabResultsPage'));
-const MessagesPage = lazy(() => import('../features/MessagesPage'));
+const DashboardPage = lazy(() => import('../features/dashboard/DashboardPage'));
+const AppointmentsPage = lazy(() => import('../features/appointments/AppointmentsPage'));
+const LabResultsPage = lazy(() => import('../features/labs/LabResultsPage'));
+const MessagesPage = lazy(() => import('../features/messages/MessagesPage'));
 
 export function AppRoutes(): JSX.Element {
   return (

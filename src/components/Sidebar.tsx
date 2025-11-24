@@ -5,7 +5,17 @@ import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import ScienceIcon from '@mui/icons-material/Science';
-import { Box, Drawer, IconButton, List, ListItemButton, ListItemIcon, ListItemText, styled, Tooltip } from '@mui/material';
+import {
+  Box,
+  Drawer,
+  IconButton,
+  List,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  styled,
+  Tooltip,
+} from '@mui/material';
 
 const DRAWER_WIDTH_EXPANDED = 240;
 const DRAWER_WIDTH_COLLAPSED = 72;
@@ -27,22 +37,12 @@ interface SidebarProps {
 
 const navItems: any[] = [
   { id: 'dashboard', href: '/', label: 'Dashboard', icon: <DashboardIcon /> },
-  {
-    id: 'appointments',
-    href: '/appointments',
-    label: 'Appointments',
-    icon: <EventAvailableIcon />,
-  },
+  { id: 'appointments', href: '/appointments', label: 'Appointments', icon: <EventAvailableIcon /> },
   { id: 'labResults', href: '/lab-results', label: 'Lab Results', icon: <ScienceIcon /> },
   { id: 'messages', href: '/messages', label: 'Messages', icon: <MailIcon /> },
 ];
 
-export default function Sidebar({
-  collapsed,
-  onToggleCollapsed,
-  selected,
-  onSelect,
-}: SidebarProps) {
+export default function Sidebar({ collapsed, onToggleCollapsed, selected, onSelect }: SidebarProps) {
   const width = collapsed ? DRAWER_WIDTH_COLLAPSED : DRAWER_WIDTH_EXPANDED;
 
   return (
@@ -90,9 +90,7 @@ export default function Sidebar({
                       px: collapsed ? 0 : 2,
                     }}
                   >
-                    <ListItemIcon
-                      sx={{ minWidth: 0, mr: collapsed ? 0 : 2, justifyContent: 'center' }}
-                    >
+                    <ListItemIcon sx={{ minWidth: 0, mr: collapsed ? 0 : 2, justifyContent: 'center' }}>
                       {item.icon}
                     </ListItemIcon>
                     {!collapsed && <ListItemText primary={item.label} />}

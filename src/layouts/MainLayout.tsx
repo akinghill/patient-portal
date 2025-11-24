@@ -47,12 +47,7 @@ export function MainLayout() {
 
   return (
     <>
-      <Sidebar
-        collapsed={collapsed}
-        onToggleCollapsed={handleToggle}
-        selected={selected}
-        onSelect={handleSelect}
-      />
+      <Sidebar collapsed={collapsed} onToggleCollapsed={handleToggle} selected={selected} onSelect={handleSelect} />
       <Box
         component="main"
         sx={{
