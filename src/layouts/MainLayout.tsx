@@ -1,8 +1,9 @@
-import { Box, useMediaQuery, useTheme } from '@mui/material';
-import { startTransition, useEffect, useState } from 'react';
+import { Box, CircularProgress, useMediaQuery, useTheme } from '@mui/material';
+import { Suspense, startTransition, useEffect, useState } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 
 import Sidebar from '../components/Sidebar';
+import { ErrorBoundary } from '../components/ErrorBoundary';
 
 const DRAWER_WIDTH_EXPANDED = 240;
 const DRAWER_WIDTH_COLLAPSED = 72;
@@ -55,7 +56,17 @@ export function MainLayout() {
           p: 3,
         }}
       >
-        <Outlet />
+        <ErrorBoundary>
+          <Suspense
+            fallback={
+              <Box display="flex" alignItems="center" justifyContent="center" minHeight={120}>
+                <CircularProgress size={24} />
+              </Box>
+            }
+          >
+            <Outlet />
+          </Suspense>
+        </ErrorBoundary>
       </Box>
     </>
   );
