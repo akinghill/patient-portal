@@ -1,7 +1,7 @@
 import { createContext, useCallback, useEffect, useMemo, useState, type ReactNode } from 'react';
 import { createTheme, ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
-import { PaletteMode } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import type { PaletteMode } from '@mui/material';
 
 type ThemeContextValue = {
   mode: PaletteMode;
@@ -10,7 +10,6 @@ type ThemeContextValue = {
 
 export const ColorModeContext = createContext<ThemeContextValue>({
   mode: 'light',
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   toggle: () => {},
 });
 
@@ -53,8 +52,7 @@ export function ThemeProvider({ children }: { children: ReactNode }): JSX.Elemen
           borderRadius: 10,
         },
         typography: {
-          fontFamily:
-            'Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif',
+          fontFamily: 'Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif',
         },
         components: {
           MuiLink: {

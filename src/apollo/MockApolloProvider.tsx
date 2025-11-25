@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import { MockedProvider } from '@apollo/client/testing';
 import { mocks } from './mocks';
 
