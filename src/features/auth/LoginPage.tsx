@@ -1,36 +1,43 @@
-import { Alert, Box, Button, Paper, Stack, TextField, Typography } from '@mui/material';
-import { useState } from 'react';
-import z from 'zod';
+import { Alert, Box, Button, Paper, Stack, TextField, Typography } from '@mui/material'
+import { useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
+import z from 'zod'
+import { useAuth } from './useAuth'
 
 const schema = z.object({
   email: z.string().email('Enter a valid email'),
   password: z.string().min(3, 'Password must be at least 3 characters'),
-});
+})
 
 export default function LoginPage(): JSX.Element {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate()
+  const location = useLocation()
+  const { login } = useAuth()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState<string | null>(null)
+  const [loading, setLoading] = useState(false)
 
   const onSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError(null);
-    const parse = schema.safeParse({ email, password });
+    e.preventDefault()
+    setError(null)
+    const parse = schema.safeParse({ email, password })
     if (!parse.success) {
-      setError(parse.error.errors[0]?.message ?? 'Invalid form data');
-      return;
+      setError(parse.error.errors[0]?.message ?? 'Invalid form data')
+      return
     }
-    setLoading(true);
+    setLoading(true)
 
     try {
-      // login
+      await login(email, password)
+      const redirectTo = location.state?.from?.pathname ?? '/'
+      navigate(redirectTo, { replace: true })
     } catch (err) {
-      setError((err as Error).message);
+      setError((err as Error).message)
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   return (
     <Box sx={{ display: 'grid', placeItems: 'center', minHeight: '100svh', px: 2 }}>
@@ -56,7 +63,7 @@ export default function LoginPage(): JSX.Element {
             autoComplete='current-password'
             required
           />
-          <Button variant='contained' type='submit'>
+          <Button variant='contained' type='submit' disabled={loading}>
             {loading ? 'Signing in...' : 'Sign In'}
           </Button>
           <Typography component='p' variant='body2' sx={{ color: 'text.secondary' }}>
@@ -65,5 +72,5 @@ export default function LoginPage(): JSX.Element {
         </Stack>
       </Paper>
     </Box>
-  );
+  )
 }
