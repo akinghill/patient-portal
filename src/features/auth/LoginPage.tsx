@@ -67,7 +67,7 @@ export default function LoginPage(): JSX.Element {
             {loading ? 'Signing in...' : 'Sign In'}
           </Button>
           <Typography component='p' variant='body2' sx={{ color: 'text.secondary' }}>
-            Use "test@email.com" and '123' to sign in (mocked).
+            "test@email.com" and "123" to sign in (mocked).
           </Typography>
         </Stack>
       </Paper>

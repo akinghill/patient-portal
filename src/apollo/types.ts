@@ -1,3 +1,4 @@
+// User
 export type CurrentUser = {
   id: string;
   givenName: string;
@@ -10,3 +11,16 @@ export type CurrentUser = {
 export type GetCurrentUserData = {
   currentUser: CurrentUser;
 };
+
+// Appointments
+export type Appointment = {
+  id: string;
+  date: string;
+  department: string;
+  clinician: string;
+  status: string;
+}
+
+export type GetAppointments = {
+  appointments: Appointment[]
+}

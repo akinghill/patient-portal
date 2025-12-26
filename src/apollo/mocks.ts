@@ -1,5 +1,6 @@
-import type { MockedResponse } from '@apollo/client/testing';
-import { GET_CURRENT_USER } from './queries/user';
+import type { MockedResponse } from '@apollo/client/testing'
+import { daysFromNowIso } from './utils'
+import { GET_CURRENT_USER, GET_APPOINTMENTS } from './queries'
 
 export const mocks: MockedResponse[] = [
   {
@@ -17,4 +18,34 @@ export const mocks: MockedResponse[] = [
       },
     },
   },
-];
+  {
+    request: { query: GET_APPOINTMENTS },
+    result: {
+      data: {
+        appointments: [
+          {
+            id: 'a1',
+            date: daysFromNowIso(1),
+            department: 'Cardiology',
+            clinician: 'Dr. Kim',
+            status: 'SCHEDULED',
+          },
+          {
+            id: 'a2',
+            date: daysFromNowIso(-5),
+            department: 'Primary Care',
+            clinician: 'Dr. Patel',
+            status: 'COMPLETED',
+          },
+          {
+            id: 'a3',
+            date: daysFromNowIso(14),
+            department: 'Dermatology',
+            clinician: 'Dr. Lee',
+            status: 'SCHEDULED',
+          },
+        ],
+      },
+    },
+  },
+]
